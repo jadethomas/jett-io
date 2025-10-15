@@ -1,0 +1,143 @@
+# Jett.io Development Rules
+
+## Project Overview
+Building a static Next.js blog (jett.io) for engineering leadership content. Focus: AI, DevOps, Security, Resilience. Voice: Opinionated, practical, action-oriented.
+
+## Brand Identity
+- **Positioning**: Battle-tested engineering practices from someone shipping AI at scale in enterprise
+- **Voice**: Cut through hype, provide actionable insights, challenge conventional wisdom
+- **Tagline**: "Engineering Leadership in the Age of AI: Signal Over Noise"
+
+## Design System
+
+### Colors
+- Primary Background: `#000000` (true black)
+- Secondary Background: `#0D0D0D` (near black)
+- Accent: `#00FF41` (terminal green)
+- Text Primary: `#FFFFFF`
+- Text Body: `#E5E7EB`
+- Text Secondary: `#9CA3AF`
+- Code blocks: Green text on black background with glow effects
+
+### Typography
+- Font: Inter or system font stack
+- Code: JetBrains Mono
+- Headings: Bold, high contrast
+- Body: 18px, line-height 1.8
+- Terminal green glow on accents: `text-shadow: 0 0 10px rgba(0, 255, 65, 0.3)`
+
+### Visual Style
+- High contrast, terminal/hacker aesthetic
+- Minimal, clean layouts
+- Glowing green accents (subtle box-shadow and text-shadow)
+- Spacious, scannable for busy leaders
+- Fast loading, performance-first
+
+## Code Conventions
+
+### Next.js Best Practices
+- Use App Router (not Pages Router)
+- Static export: `output: 'export'` in next.config.js
+- No client-side runtime dependencies where possible
+- Server Components by default, 'use client' only when necessary
+- Optimize images with `unoptimized: true` for static export
+
+### Component Structure
+- Use TypeScript for all components
+- Functional components with modern React patterns
+- Co-locate styles with components (CSS modules or Tailwind)
+- Keep components small and focused
+
+### File Organization
+```
+/app - Next.js app router pages
+/components - Reusable UI components
+/content/posts - MDX blog posts
+/lib - Utilities, helpers
+/public - Static assets
+/styles - Global styles
+```
+
+### Blog Post Format
+- MDX files in `/content/posts/`
+- Frontmatter required: title, date, excerpt, category, readTime, author
+- Categories: AI, DevOps, Security, Resilience
+- Every post should end with an "Action Box" component
+
+### Key Components to Maintain
+- **ActionBox**: Green-bordered callout for "What You Should Do Monday Morning"
+- **CodeBlock**: Terminal green syntax highlighting with glow
+- **PostCard**: For blog listings
+- **Navigation**: Clean, minimal with logo
+- **Logo**: "J" with ascending signal bars
+
+## Content Guidelines
+
+### Writing Style
+- Start with bold, provocative statements
+- Challenge conventional wisdom
+- Focus on implementation over theory
+- Include real examples (anonymized if needed)
+- Always end with actionable steps
+- Short paragraphs, scannable
+- Use "signal" vs "noise" framing
+
+### Post Structure
+1. Hook with controversial/bold take
+2. "The Noise" - what everyone says
+3. "The Signal" - what actually works
+4. Action Box - what to do Monday morning
+
+## Technical Requirements
+
+### Performance
+- Optimize for Core Web Vitals
+- Lazy load images
+- Minimize JavaScript bundle
+- Fast build times
+
+### SEO
+- Proper meta tags on all pages
+- OpenGraph images
+- Sitemap generation
+- RSS feed
+- Semantic HTML
+
+### Accessibility
+- High contrast ratios (already achieved with black/white/green)
+- Semantic HTML elements
+- Alt text for images
+- Keyboard navigation support
+
+## Deployment
+- GitHub Pages via GitHub Actions
+- Static HTML output
+- Custom domain: jett.io
+- Auto-deploy on push to main
+
+## Development Workflow
+- Test locally before pushing: `npm run dev`
+- Build and check static export: `npm run build`
+- Keep dependencies minimal
+- Document significant changes in commits
+
+## Things to Avoid
+- Don't use localStorage/sessionStorage (GitHub Pages limitation)
+- No runtime API calls (static site)
+- Don't over-engineer - keep it simple
+- Avoid unnecessary animations (subtle only)
+- No generic stock photos - use code examples, diagrams, or skip images
+
+## Brand Voice Examples
+
+❌ Bad: "In this blog post, I'll explore some thoughts about AI agents..."
+✅ Good: "Everyone's wrong about AI agents. Here's what actually works in production."
+
+❌ Bad: "There are many approaches to implementing MLOps..."
+✅ Good: "Most MLOps frameworks are overkill. Here's the minimal stack that ships."
+
+## When Making Changes
+- Maintain terminal green aesthetic throughout
+- Keep code blocks authentic (real, working examples)
+- Ensure every feature drives toward the goal: empowering leaders to take action
+- Ask: "Would this make a busy engineering manager stop and think?"
