@@ -1,30 +1,76 @@
-# Jett.io blog site
+# Jett.io
 
-*Automatically synced with your [v0.app](https://v0.app) deployments*
+**Engineering Leadership in the Age of AI: Signal Over Noise**
 
-[![Deployed on Vercel](https://img.shields.io/badge/Deployed%20on-Vercel-black?style=for-the-badge&logo=vercel)](https://vercel.com/jadecyberteam-2998s-projects/v0-jett-io-blog-site)
-[![Built with v0](https://img.shields.io/badge/Built%20with-v0.app-black?style=for-the-badge)](https://v0.app/chat/projects/1l8wImYvHTS)
+A static Next.js blog focused on engineering leadership, AI, DevOps, Security, and Resilience. Deployed to GitHub Pages with a terminal-green aesthetic.
 
-## Overview
+🌐 **Live Site**: [jett.io](https://jett.io)
 
-This repository will stay in sync with your deployed chats on [v0.app](https://v0.app).
-Any changes you make to your deployed app will be automatically pushed to this repository from [v0.app](https://v0.app).
+## Quick Start
+
+```bash
+# Install dependencies
+npm install
+
+# Run development server
+npm run dev
+
+# Build for production
+npm run build
+
+# The static site will be in /out directory
+```
 
 ## Deployment
 
-Your project is live at:
+This site automatically deploys to GitHub Pages on every push to `main`. See [DEPLOYMENT.md](./DEPLOYMENT.md) for detailed setup instructions.
 
-**[https://vercel.com/jadecyberteam-2998s-projects/v0-jett-io-blog-site](https://vercel.com/jadecyberteam-2998s-projects/v0-jett-io-blog-site)**
+### One-Time Setup
 
-## Build your app
+1. Enable GitHub Pages in repository settings
+2. Set source to "GitHub Actions"
+3. Configure custom domain: `jett.io`
+4. Update DNS settings at your domain registrar
 
-Continue building your app on:
+### Deploy
 
-**[https://v0.app/chat/projects/1l8wImYvHTS](https://v0.app/chat/projects/1l8wImYvHTS)**
+```bash
+git add .
+git commit -m "Your changes"
+git push origin main
+```
 
-## How It Works
+The GitHub Actions workflow will automatically build and deploy.
 
-1. Create and modify your project using [v0.app](https://v0.app)
-2. Deploy your chats from the v0 interface
-3. Changes are automatically pushed to this repository
-4. Vercel deploys the latest version from this repository
+## Project Structure
+
+```
+/app          - Next.js App Router pages
+/components   - Reusable UI components
+/content      - MDX blog posts
+/lib          - Utilities and helpers
+/public       - Static assets
+/styles       - Global styles
+```
+
+## Tech Stack
+
+- **Framework**: Next.js 15 (App Router, Static Export)
+- **Styling**: Tailwind CSS
+- **Content**: MDX for blog posts
+- **Deployment**: GitHub Pages
+- **Font**: Inter + JetBrains Mono
+
+## Design System
+
+- **Colors**: Black (#000000), Terminal Green (#00FF41), White
+- **Aesthetic**: High contrast, terminal/hacker style
+- **Typography**: Clean, scannable, action-oriented
+
+## Contributing
+
+This is a personal blog. For development rules and guidelines, see the repository-specific rules in `.cursorrules` or similar configuration.
+
+## License
+
+All rights reserved.
