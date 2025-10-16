@@ -1,6 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   output: 'export',
+  // Use basePath for GitHub Pages repository deployment
+  // Remove this line once custom domain (jett.io) is configured
+  basePath: '/jett-io',
   eslint: {
     ignoreDuringBuilds: true,
   },
