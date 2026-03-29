@@ -68,7 +68,7 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-8 pt-8 border-t border-border text-center text-sm text-muted-foreground">
+        <div className="mt-8 pt-8 border-t border-outline-variant/15 text-center text-sm text-muted-foreground">
           <p>&copy; {currentYear} jett.io. All rights reserved.</p>
         </div>
       </div>

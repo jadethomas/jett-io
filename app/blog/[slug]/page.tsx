@@ -82,7 +82,7 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
           <h1 className="text-5xl md:text-6xl font-bold mb-6 text-balance">{post.title}</h1>
 
           {/* Meta info */}
-          <div className="flex flex-wrap items-center gap-4 text-muted-foreground mb-8 pb-8 border-b border-border">
+          <div className="flex flex-wrap items-center gap-4 text-muted-foreground mb-8 pb-8 border-b border-outline-variant/15">
             <div className="flex items-center gap-2">
               <Calendar className="w-4 h-4" />
               <span>{post.date}</span>
@@ -102,7 +102,7 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
           </div>
 
           {/* Share buttons */}
-          <div className="mt-12 pt-8 border-t border-border">
+          <div className="mt-12 pt-8 border-t border-outline-variant/15">
             <p className="text-sm text-muted-foreground mb-4">Share this post:</p>
             <div className="flex gap-3">
               <Button variant="outline" size="sm" className="border-border hover:border-primary/40 bg-transparent">

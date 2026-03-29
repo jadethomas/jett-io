@@ -193,6 +193,9 @@
     @apply font-mono text-primary text-sm;
   }
 
+}
+
+@layer utilities {
   /* Blueprint grid background */
   .blueprint-grid {
     background-image:
