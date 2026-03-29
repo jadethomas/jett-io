@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800;900&amp;family=Public+Sans:wght@300;400;600&amp;family=Space+Grotesk:wght@300;500;700&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script content='      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "secondary-fixed-dim": "#b6c4ff",
+              "secondary-fixed": "#dce1ff",
+              "surface-container-highest": "#353534",
+              "tertiary-fixed-dim": "#ffb5a0",
+              "on-secondary-fixed-variant": "#2b418d",
+              "surface-bright": "#3a3939",
+              "secondary": "#b6c4ff",
+              "surface-container-low": "#1c1b1b",
+              "on-tertiary-fixed-variant": "#872100",
+              "on-error": "#690005",
+              "primary-fixed": "#dce1ff",
+              "surface-container-lowest": "#0e0e0e",
+              "primary-fixed-dim": "#b6c4ff",
+              "tertiary-container": "#c13301",
+              "surface": "#131313",
+              "on-primary-container": "#e3e6ff",
+              "error-container": "#93000a",
+              "outline": "#8d90a2",
+              "on-surface": "#e5e2e1",
+              "on-tertiary-container": "#ffe1d9",
+              "inverse-surface": "#e5e2e1",
+              "on-primary-fixed-variant": "#0039b3",
+              "inverse-on-surface": "#313030",
+              "surface-container-high": "#2a2a2a",
+              "on-secondary": "#0e2976",
+              "background": "#131313",
+              "primary-container": "#36D336",
+              "tertiary-fixed": "#ffdbd1",
+              "surface-container": "#201f1f",
+              "on-primary": "#002780",
+              "surface-tint": "#b6c4ff",
+              "on-secondary-container": "#a3b5ff",
+              "surface-dim": "#131313",
+              "outline-variant": "#434656",
+              "primary": "#36D336",
+              "on-primary-fixed": "#001551",
+              "on-surface-variant": "#c3c5d9",
+              "inverse-primary": "#004dea",
+              "on-error-container": "#ffdad6",
+              "on-tertiary": "#601400",
+              "error": "#ffb4ab",
+              "on-secondary-fixed": "#001551",
+              "on-tertiary-fixed": "#3b0900",
+              "on-background": "#e5e2e1",
+              "secondary-container": "#2d4490",
+              "tertiary": "#ffb5a0",
+              "surface-variant": "#353534"
+            },
+            fontFamily: {
+              "headline": ["Inter"],
+              "body": ["Public Sans"],
+              "label": ["Space Grotesk"]
+            },
+            borderRadius: {"DEFAULT": "0", "lg": "0", "xl": "0", "full": "9999px"},
+          },
+        },
+      }' id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "secondary-fixed-dim": "#b6c4ff",
+              "secondary-fixed": "#dce1ff",
+              "surface-container-highest": "#353534",
+              "tertiary-fixed-dim": "#ffb5a0",
+              "on-secondary-fixed-variant": "#2b418d",
+              "surface-bright": "#3a3939",
+              "secondary": "#b6c4ff",
+              "surface-container-low": "#1c1b1b",
+              "on-tertiary-fixed-variant": "#872100",
+              "on-error": "#690005",
+              "primary-fixed": "#dce1ff",
+              "surface-container-lowest": "#0e0e0e",
+              "primary-fixed-dim": "#b6c4ff",
+              "tertiary-container": "#c13301",
+              "surface": "#131313",
+              "on-primary-container": "#e3e6ff",
+              "error-container": "#93000a",
+              "outline": "#8d90a2",
+              "on-surface": "#e5e2e1",
+              "on-tertiary-container": "#ffe1d9",
+              "inverse-surface": "#e5e2e1",
+              "on-primary-fixed-variant": "#0039b3",
+              "inverse-on-surface": "#313030",
+              "surface-container-high": "#2a2a2a",
+              "on-secondary": "#0e2976",
+              "background": "#131313",
+              "primary-container": "#0055ff",
+              "tertiary-fixed": "#ffdbd1",
+              "surface-container": "#201f1f",
+              "on-primary": "#002780",
+              "surface-tint": "#b6c4ff",
+              "on-secondary-container": "#a3b5ff",
+              "surface-dim": "#131313",
+              "outline-variant": "#434656",
+              "primary": "#b6c4ff",
+              "on-primary-fixed": "#001551",
+              "on-surface-variant": "#c3c5d9",
+              "inverse-primary": "#004dea",
+              "on-error-container": "#ffdad6",
+              "on-tertiary": "#601400",
+              "error": "#ffb4ab",
+              "on-secondary-fixed": "#001551",
+              "on-tertiary-fixed": "#3b0900",
+              "on-background": "#e5e2e1",
+              "secondary-container": "#2d4490",
+              "tertiary": "#ffb5a0",
+              "surface-variant": "#353534"
+            },
+            fontFamily: {
+              "headline": ["Inter"],
+              "body": ["Public Sans"],
+              "label": ["Space Grotesk"]
+            },
+            borderRadius: {"DEFAULT": "0", "lg": "0", "xl": "0", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            background-color: #080808;
+            color: #e5e2e1;
+        }
+        .scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 35%; /* Representative state */
+            height: 3px;
+            background: #36D336;
+            z-index: 100;
+        }
+        ::selection {
+            background: #36D336;
+            color: black;
+        }
+    </style>
+</head>
+<body class="font-body selection:bg-primary-container">
+<!-- Sticky Scroll Progress -->
+<div class="scroll-progress"></div>
+<!-- Top Navigation (Shared Component Integration) -->
+<nav class="fixed top-0 z-50 flex justify-between items-center w-full px-12 py-8 max-w-full mx-auto bg-[#080808] dark:bg-[#080808]">
+<div class="text-2xl font-black tracking-tighter text-slate-100 uppercase font-headline">jett.io</div>
+<div class="hidden md:flex gap-12">
+<a class="text-slate-400 font-medium hover:text-slate-100 transition-colors font-label" href="#">Architecture</a>
+<a class="text-slate-400 font-medium hover:text-slate-100 transition-colors font-label" href="#">Systems</a>
+<a class="text-slate-400 font-medium hover:text-slate-100 transition-colors font-label" href="#">Engineering</a>
+<a class="text-slate-400 font-medium hover:text-slate-100 transition-colors font-label" href="#">About</a>
+</div>
+<div class="text-[#0055ff] cursor-pointer hover:bg-slate-800/50 transition-all duration-200 p-2">
+<span class="material-symbols-outlined text-[#36D336]">menu</span>
+</div>
+</nav>
+<!-- Article Header -->
+<header class="pt-48 pb-24 px-6 md:px-12 max-w-7xl mx-auto">
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-12 border-b border-white/5 pb-16">
+<div class="max-w-4xl">
+<div class="flex gap-4 mb-8">
+<span class="font-label text-xs tracking-widest uppercase py-1 px-3 text-[#36D336] bg-[#36D336]/10">Systems Engineering</span>
+<span class="font-label text-xs tracking-widest uppercase text-slate-500 py-1">March 14, 2024</span>
+</div>
+<h1 class="font-headline font-black text-6xl md:text-8xl tracking-[-0.04em] leading-[0.9] text-slate-100">
+                    MONOLITHIC<br/>INFRASTRUCTURE<br/>AS CODE.
+                </h1>
+</div>
+<div class="font-label text-xs tracking-widest uppercase text-slate-500 mb-2">
+                Reading time: 08 min
+            </div>
+</div>
+</header>
+<!-- Hero Image Section -->
+<section class="w-full px-6 md:px-12 mb-32">
+<div class="aspect-[21/9] w-full bg-surface-container-low overflow-hidden">
+<img alt="Architectural structure" class="w-full h-full object-cover opacity-80 mix-blend-luminosity hover:opacity-100 transition-opacity duration-700" data-alt="Monolithic concrete brutalist skyscraper against a stark dark sky with clean geometric lines and minimal lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCQVh1y4QAGWQ5WNTq3jmQqGK1sSbOQ8eg-wVfimnTL2MzaM9ueoAuB1Py2UpzJeLEVbH-bX5grED2ORnhwzh-jHTqoQgyyV0Iu_q8wL09_dMPGiMUE0IQO95eKxVDBKoCpdIKPwwLPBp6GLDgireNVqu3J0HOtFsaOEZc0M24buLRrPvIpjLLgS3E2cbCMwPmb_GP2j_7cQ5icGqM0ZolEfvCpP86UsPb1NiRuD1eq4v2hXGa1mQHsZSFRPEjeQFbg4JU3B7aoZmx5"/>
+</div>
+</section>
+<!-- Main Content Canvas -->
+<main class="max-w-screen-xl mx-auto px-6 md:px-12 grid grid-cols-12 gap-12">
+<!-- Sidebar Meta (Asymmetric Layout) -->
+<aside class="hidden lg:block col-span-3 sticky top-48 h-fit">
+<div class="space-y-12">
+<div>
+<h4 class="font-label text-[10px] uppercase tracking-widest text-slate-600 mb-4">Author</h4>
+<p class="font-headline font-bold text-slate-200">K. STERLING</p>
+<p class="font-label text-xs text-slate-500">Lead Systems Architect</p>
+</div>
+<div>
+<h4 class="font-label text-[10px] uppercase tracking-widest text-slate-600 mb-4">Tags</h4>
+<div class="flex flex-wrap gap-2">
+<span class="text-[10px] px-2 py-1 border border-white/10 text-slate-400 font-label uppercase">Kubernetes</span>
+<span class="text-[10px] px-2 py-1 border border-white/10 text-slate-400 font-label uppercase">Terraform</span>
+<span class="text-[10px] px-2 py-1 border border-white/10 text-slate-400 font-label uppercase">Bespoke</span>
+</div>
+</div>
+</div>
+</aside>
+<!-- Centered Reading Experience -->
+<article class="col-span-12 lg:col-span-7 space-y-12 text-slate-300 leading-relaxed text-lg font-body">
+<p class="text-xl md:text-2xl text-slate-100 font-light leading-relaxed mb-16">
+                Architecture is not merely the enclosure of space; it is the deliberate manifestation of logic within a physical or digital plane. When we discuss jett.io's precision engineering, we refer to a methodology that treats code as reinforced concrete.
+            </p>
+<h2 class="font-headline font-bold text-3xl text-slate-100 tracking-tight pt-8 border-t border-white/5">
+                01. Structural Integrity in Scaling
+            </h2>
+<p>
+                In the pursuit of performance, many developers sacrifice the "void"—the essential negative space between components that allows for modular evolution. Our approach mimics the Swiss architectural grid, ensuring that every function occupies a dedicated, unyielding position within the system's blueprint.
+            </p>
+<!-- Pull Quote with Electric Blue Accent -->
+<blockquote class="relative py-8 pl-12 my-16 group">
+<div class="absolute left-0 top-0 bottom-0 w-1 group-hover:w-2 transition-all duration-300 bg-[#36D336]"></div>
+<p class="font-headline text-2xl italic font-medium text-slate-100 tracking-tight">
+                    "The most sophisticated system is the one where nothing can be removed without compromising the whole. It is a state of absolute equilibrium."
+                </p>
+</blockquote>
+<p>
+                Consider the deployment lifecycle. By utilizing immutable infrastructure patterns, we eliminate the "drift" that often occurs in legacy environments. Below is a representation of a precision deployment manifest:
+            </p>
+<!-- Code Block with Precise Syntax Highlighting -->
+<div class="bg-[#0e0e0e] p-8 font-mono text-sm leading-6 border-l-4 border-slate-800 overflow-x-auto">
+<div class="flex justify-between mb-6 opacity-30 font-label text-[10px] uppercase tracking-tighter">
+<span>manifest.yaml</span>
+<span>v2.4.0</span>
+</div>
+<div class="space-y-1">
+<p><span class="">apiVersion:</span> <span class="text-slate-100">jett.io/v1alpha1</span></p>
+<p><span class="">kind:</span> <span class="text-slate-100">MonolithicStructure</span></p>
+<p><span class="">metadata:</span></p>
+<p class="pl-4"><span class="">name:</span> <span class="text-slate-100">primary-blueprint</span></p>
+<p><span class="">spec:</span></p>
+<p class="pl-4"><span class="">replicas:</span> <span class="text-tertiary">3</span></p>
+<p class="pl-4"><span class="">integrityCheck:</span> <span class="text-secondary">strict</span></p>
+<p class="pl-4"><span class="">voidRatio:</span> <span class="text-slate-100">0.15</span></p>
+<p class="pl-4"><span class="">scaling:</span></p>
+<p class="pl-8"><span class="">strategy:</span> <span class="text-slate-100">Atomic</span></p>
+</div>
+</div>
+<h3 class="font-headline font-bold text-xl text-slate-100 tracking-tight pt-6">
+                02. The Geometry of Data
+            </h3>
+<p>
+                When data flows through a system, it should follow the path of least resistance while maintaining its structural metadata. At JETT, we use a custom parsing engine that treats each packet as a geometric primitive—allowing for 4D visualization of traffic patterns in real-time.
+            </p>
+<div class="grid grid-cols-2 gap-8 my-16">
+<div class="bg-surface-container-low p-8 border-b-2 border-transparent transition-all hover:border-[#36D336]">
+<span class="font-label text-[10px] text-slate-500 uppercase">Metrics</span>
+<div class="text-3xl font-headline font-black mt-2 text-[#36D336]">0.02ms</div>
+<div class="text-xs text-slate-500 mt-1">Average Latency</div>
+</div>
+<div class="bg-surface-container-low p-8 border-b-2 border-transparent transition-all hover:border-[#36D336]">
+<span class="font-label text-[10px] text-slate-500 uppercase">Throughput</span>
+<div class="text-3xl font-headline font-black mt-2 text-[#36D336]">99.99%</div>
+<div class="text-xs text-slate-500 mt-1">Uptime Reliability</div>
+</div>
+</div>
+<p>
+                The future of engineering is not in more complexity, but in more intentionality. We are moving toward an era of 'Silent Systems'—architectures that exist solely to support the purpose of the user without drawing attention to their own existence.
+            </p>
+</article>
+</main>
+<!-- Post Action Footer -->
+<section class="max-w-screen-xl mx-auto px-6 md:px-12 py-32 border-t border-white/5 mt-32">
+<div class="flex flex-col md:flex-row justify-between items-center gap-12">
+<a class="group flex items-center gap-4" href="#">
+<span class="material-symbols-outlined group-hover:-translate-x-2 transition-transform text-[#36D336]">arrow_back</span>
+<span class="font-label text-xs tracking-widest uppercase text-slate-300 group-hover:text-white transition-colors">Back to Blog</span>
+</a>
+<div class="flex gap-8 items-center">
+<span class="font-label text-[10px] uppercase tracking-widest text-slate-600">Share This Blueprint</span>
+<div class="flex gap-4">
+<a class="w-10 h-10 flex items-center justify-center bg-surface-container-low hover:bg-primary-container transition-colors group" href="#">
+<span class="material-symbols-outlined text-sm group-hover:text-white text-[#36D336]">share</span>
+</a>
+<a class="w-10 h-10 flex items-center justify-center bg-surface-container-low hover:bg-primary-container transition-colors group" href="#">
+<span class="material-symbols-outlined text-sm group-hover:text-white text-[#36D336]">link</span>
+</a>
+</div>
+</div>
+</div>
+</section>
+<!-- Global Footer (Shared Component Integration) -->
+<footer class="flex flex-col md:flex-row justify-between items-center px-12 w-full border-t border-white/5 bg-[#080808] dark:bg-[#080808] py-20 mt-40">
+<div class="font-['Space_Grotesk'] text-xs tracking-widest uppercase text-slate-500">
+            © 2024 JETT.IO PRECISION ENGINEERING
+        </div>
+<div class="flex gap-12 mt-8 md:mt-0">
+<a class="font-['Space_Grotesk'] text-xs tracking-widest uppercase text-slate-500 transition-opacity hover:text-[#36D336]" href="#">LinkedIn</a>
+<a class="font-['Space_Grotesk'] text-xs tracking-widest uppercase text-slate-500 transition-opacity hover:text-[#36D336]" href="#">GitHub</a>
+</div>
+</footer>
+</body></html>
