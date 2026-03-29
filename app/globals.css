@@ -3,78 +3,98 @@
 
 @custom-variant dark (&:is(.dark *));
 
-/* Custom Jett.io terminal-inspired design system */
+/* Monolithic Blueprint Design System */
 :root {
-  /* Terminal color palette */
-  --terminal-green: #00ff41;
-  --true-black: #000000;
-  --near-black: #0d0d0d;
-  --white: #ffffff;
-  --cool-gray: #e5e7eb;
-  --medium-gray: #9ca3af;
-  --dark-gray: #1f1f1f;
+  /* MD3 Color Tokens — Primary */
+  --primary: #36D336;
+  --primary-container: #36D336;
+  --on-primary: #002780;
+  --on-primary-container: #000000;
+  --primary-fixed: #dce1ff;
+  --primary-fixed-dim: #b6c4ff;
+  --on-primary-fixed: #001551;
+  --on-primary-fixed-variant: #0039b3;
+  --inverse-primary: #36D336;
+  --surface-tint: #36D336;
 
-  /* Design tokens */
-  --background: var(--true-black);
-  --foreground: var(--white);
-  --card: var(--near-black);
-  --card-foreground: var(--cool-gray);
-  --popover: var(--near-black);
-  --popover-foreground: var(--cool-gray);
-  --primary: var(--terminal-green);
-  --primary-foreground: var(--true-black);
-  --secondary: var(--dark-gray);
-  --secondary-foreground: var(--cool-gray);
-  --muted: var(--dark-gray);
-  --muted-foreground: var(--medium-gray);
-  --accent: var(--terminal-green);
-  --accent-foreground: var(--true-black);
-  --destructive: oklch(0.577 0.245 27.325);
-  --destructive-foreground: var(--white);
-  --border: var(--dark-gray);
-  --input: var(--dark-gray);
-  --ring: var(--terminal-green);
-  --radius: 0.5rem;
-  --chart-1: oklch(0.646 0.222 41.116);
-  --chart-2: oklch(0.6 0.118 184.704);
-  --chart-3: oklch(0.398 0.07 227.392);
-  --chart-4: oklch(0.828 0.189 84.429);
-  --chart-5: oklch(0.769 0.188 70.08);
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.205 0 0);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
-}
+  /* MD3 Color Tokens — Secondary */
+  --secondary: #b6c4ff;
+  --secondary-container: #2d4490;
+  --on-secondary: #0e2976;
+  --on-secondary-container: #a3b5ff;
+  --secondary-fixed: #dce1ff;
+  --secondary-fixed-dim: #b6c4ff;
+  --on-secondary-fixed: #001551;
+  --on-secondary-fixed-variant: #2b418d;
 
-.dark {
-  --background: var(--true-black);
-  --foreground: var(--white);
-  --card: var(--near-black);
-  --card-foreground: var(--cool-gray);
-  --popover: var(--near-black);
-  --popover-foreground: var(--cool-gray);
-  --primary: var(--terminal-green);
-  --primary-foreground: var(--true-black);
-  --secondary: var(--dark-gray);
-  --secondary-foreground: var(--cool-gray);
-  --muted: var(--dark-gray);
-  --muted-foreground: var(--medium-gray);
-  --accent: var(--terminal-green);
-  --accent-foreground: var(--true-black);
+  /* MD3 Color Tokens — Tertiary */
+  --tertiary: #ffb5a0;
+  --tertiary-container: #c13301;
+  --on-tertiary: #601400;
+  --on-tertiary-container: #ffe1d9;
+  --tertiary-fixed: #ffdbd1;
+  --tertiary-fixed-dim: #ffb5a0;
+  --on-tertiary-fixed: #3b0900;
+  --on-tertiary-fixed-variant: #872100;
+
+  /* MD3 Color Tokens — Surface Hierarchy */
+  --background: #131313;
+  --surface: #131313;
+  --surface-dim: #131313;
+  --surface-bright: #3a3939;
+  --surface-container-lowest: #0e0e0e;
+  --surface-container-low: #1c1b1b;
+  --surface-container: #201f1f;
+  --surface-container-high: #2a2a2a;
+  --surface-container-highest: #353534;
+  --surface-variant: #353534;
+
+  /* MD3 Color Tokens — On-Surface */
+  --on-surface: #e5e2e1;
+  --on-surface-variant: #c3c5d9;
+  --on-background: #e5e2e1;
+  --inverse-surface: #e5e2e1;
+  --inverse-on-surface: #313030;
+
+  /* MD3 Color Tokens — Outline */
+  --outline: #8d90a2;
+  --outline-variant: #434656;
+
+  /* MD3 Color Tokens — Error */
+  --error: #ffb4ab;
+  --error-container: #93000a;
+  --on-error: #690005;
+  --on-error-container: #ffdad6;
+
+  /* Semantic tokens (shadcn/ui compatibility) */
+  --foreground: var(--on-surface);
+  --card: var(--surface-container);
+  --card-foreground: var(--on-surface);
+  --popover: var(--surface-container);
+  --popover-foreground: var(--on-surface);
+  --primary-foreground: var(--on-primary-container);
+  --secondary-foreground: var(--on-surface);
+  --muted: var(--surface-container-high);
+  --muted-foreground: var(--on-surface-variant);
+  --accent: var(--primary);
+  --accent-foreground: var(--on-primary-container);
   --destructive: oklch(0.577 0.245 27.325);
-  --destructive-foreground: var(--white);
-  --border: var(--dark-gray);
-  --input: var(--dark-gray);
-  --ring: var(--terminal-green);
+  --destructive-foreground: #ffffff;
+  --border: var(--surface-container-high);
+  --input: var(--surface-container-high);
+  --ring: var(--primary);
+  --radius: 0px;
 }
 
 @theme inline {
-  --font-sans: "Inter", "Inter Fallback", system-ui, -apple-system, sans-serif;
-  --font-mono: "JetBrains Mono", "JetBrains Mono Fallback", "Courier New", monospace;
+  /* Font families — resolved via next/font CSS variables */
+  --font-sans: var(--font-inter), "Inter", system-ui, -apple-system, sans-serif;
+  --font-headline: var(--font-inter), "Inter", system-ui, sans-serif;
+  --font-body: var(--font-public-sans), "Public Sans", system-ui, sans-serif;
+  --font-label: var(--font-space-grotesk), "Space Grotesk", system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains-mono), "JetBrains Mono", "Courier New", monospace;
+
+  /* Color tokens — shadcn/ui semantic */
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -94,23 +114,60 @@
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
-  --radius-sm: calc(var(--radius) - 4px);
-  --radius-md: calc(var(--radius) - 2px);
-  --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) + 4px);
-  --color-chart-1: var(--chart-1);
-  --color-chart-2: var(--chart-2);
-  --color-chart-3: var(--chart-3);
-  --color-chart-4: var(--chart-4);
-  --color-chart-5: var(--chart-5);
-  --color-sidebar: var(--sidebar);
-  --color-sidebar-foreground: var(--sidebar-foreground);
-  --color-sidebar-primary: var(--sidebar-primary);
-  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
-  --color-sidebar-accent: var(--sidebar-accent);
-  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
-  --color-sidebar-border: var(--sidebar-border);
-  --color-sidebar-ring: var(--sidebar-ring);
+
+  /* Color tokens — MD3 surface hierarchy */
+  --color-surface: var(--surface);
+  --color-surface-dim: var(--surface-dim);
+  --color-surface-bright: var(--surface-bright);
+  --color-surface-container-lowest: var(--surface-container-lowest);
+  --color-surface-container-low: var(--surface-container-low);
+  --color-surface-container: var(--surface-container);
+  --color-surface-container-high: var(--surface-container-high);
+  --color-surface-container-highest: var(--surface-container-highest);
+  --color-surface-variant: var(--surface-variant);
+  --color-surface-tint: var(--surface-tint);
+
+  /* Color tokens — MD3 on-surface */
+  --color-on-surface: var(--on-surface);
+  --color-on-surface-variant: var(--on-surface-variant);
+  --color-on-background: var(--on-background);
+  --color-inverse-surface: var(--inverse-surface);
+  --color-inverse-on-surface: var(--inverse-on-surface);
+
+  /* Color tokens — MD3 primary */
+  --color-primary-container: var(--primary-container);
+  --color-on-primary: var(--on-primary);
+  --color-on-primary-container: var(--on-primary-container);
+  --color-primary-fixed: var(--primary-fixed);
+  --color-primary-fixed-dim: var(--primary-fixed-dim);
+  --color-inverse-primary: var(--inverse-primary);
+
+  /* Color tokens — MD3 secondary */
+  --color-secondary-container: var(--secondary-container);
+  --color-on-secondary: var(--on-secondary);
+  --color-on-secondary-container: var(--on-secondary-container);
+
+  /* Color tokens — MD3 tertiary */
+  --color-tertiary: var(--tertiary);
+  --color-tertiary-container: var(--tertiary-container);
+  --color-on-tertiary: var(--on-tertiary);
+  --color-on-tertiary-container: var(--on-tertiary-container);
+
+  /* Color tokens — MD3 outline */
+  --color-outline: var(--outline);
+  --color-outline-variant: var(--outline-variant);
+
+  /* Color tokens — MD3 error */
+  --color-error: var(--error);
+  --color-error-container: var(--error-container);
+  --color-on-error: var(--on-error);
+  --color-on-error-container: var(--on-error-container);
+
+  /* Border radius — monolithic 0px, keep full for pills */
+  --radius-sm: 0px;
+  --radius-md: 0px;
+  --radius-lg: 0px;
+  --radius-xl: 0px;
 }
 
 @layer base {
@@ -118,42 +175,40 @@
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-[#080808] text-foreground font-body antialiased;
   }
 
-  /* Terminal green glow effect */
-  .terminal-glow {
-    text-shadow: 0 0 10px var(--terminal-green), 0 0 20px var(--terminal-green);
-  }
-
-  .terminal-glow-box {
-    box-shadow: 0 0 10px rgba(0, 255, 65, 0.3), 0 0 20px rgba(0, 255, 65, 0.1);
+  /* Selection styling — primary-container green */
+  ::selection {
+    background-color: #36D336;
+    color: #000000;
   }
 
   /* Code block styling */
   pre {
-    @apply bg-black border border-primary/20 rounded-lg p-4 overflow-x-auto;
+    @apply bg-surface-container-lowest border border-outline-variant/15 p-4 overflow-x-auto;
   }
 
   code {
     @apply font-mono text-primary text-sm;
   }
 
-  /* Blinking cursor effect */
-  @keyframes blink {
-    0%,
-    50% {
-      opacity: 1;
-    }
-    51%,
-    100% {
-      opacity: 0;
-    }
+  /* Blueprint grid background */
+  .blueprint-grid {
+    background-image:
+      linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+    background-size: 40px 40px;
   }
 
-  .cursor-blink::after {
-    content: "▋";
-    animation: blink 1s infinite;
-    color: var(--terminal-green);
+  /* Ghost border — outline-variant at 15% opacity */
+  .ghost-border {
+    border: 1px solid rgb(67 70 86 / 0.15);
+  }
+
+  /* Text stroke for display headings */
+  .text-stroke {
+    -webkit-text-stroke: 1px rgba(229, 226, 225, 0.3);
+    color: transparent;
   }
 }

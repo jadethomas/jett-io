@@ -13,10 +13,10 @@ interface PostCardProps {
 export function PostCard({ title, excerpt, date, readTime, category, slug }: PostCardProps) {
   return (
     <Link href={`/blog/${slug}`} className="group">
-      <article className="bg-card border border-border hover:border-primary/40 rounded-lg p-6 transition-all hover:terminal-glow-box h-full flex flex-col">
+      <article className="bg-surface-container border border-outline-variant/15 hover:border-primary/40 p-6 transition-all hover:bg-surface-container-high h-full flex flex-col">
         {/* Category tag */}
         <div className="mb-3">
-          <span className="inline-block px-3 py-1 text-xs font-bold bg-primary/10 text-primary rounded-full border border-primary/30">
+          <span className="inline-block px-3 py-1 text-xs font-bold bg-primary/10 text-primary border border-primary/30 font-label uppercase tracking-widest">
             {category}
           </span>
         </div>

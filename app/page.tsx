@@ -101,7 +101,7 @@ export default function HomePage() {
 
         {/* About Section */}
         <section className="container mx-auto px-4 py-16">
-          <div className="max-w-3xl mx-auto bg-card border border-border rounded-lg p-8 md:p-12">
+          <div className="max-w-3xl mx-auto bg-surface-container border border-outline-variant/15 p-8 md:p-12">
             <h2 className="text-3xl font-bold mb-6">Why This Blog Exists</h2>
             <div className="space-y-4 text-card-foreground leading-relaxed">
               <p>

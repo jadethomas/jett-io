@@ -39,11 +39,11 @@ const components = {
     <blockquote className="border-l-4 border-primary pl-4 italic my-6 text-muted-foreground" {...props} />
   ),
   code: (props: React.HTMLAttributes<HTMLElement>) => (
-    <code className="bg-black text-primary px-1 py-0.5 rounded text-sm font-mono" {...props} />
+    <code className="bg-surface-container-lowest text-primary px-1 py-0.5 text-sm font-mono" {...props} />
   ),
   pre: (props: React.HTMLAttributes<HTMLPreElement>) => (
     <pre
-      className="bg-black border border-primary/20 rounded-lg p-4 overflow-x-auto my-6 font-mono text-sm"
+      className="bg-surface-container-lowest border border-outline-variant/15 p-4 overflow-x-auto my-6 font-mono text-sm"
       {...props}
     />
   ),
@@ -73,7 +73,7 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
 
           {/* Category tag */}
           <div className="mb-4">
-            <span className="inline-block px-3 py-1 text-xs font-bold bg-primary/10 text-primary rounded-full border border-primary/30">
+            <span className="inline-block px-3 py-1 text-xs font-bold bg-primary/10 text-primary border border-primary/30 font-label uppercase tracking-widest">
               {post.category}
             </span>
           </div>
