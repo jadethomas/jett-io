@@ -22,7 +22,7 @@ export function NewsletterSignup() {
   }
 
   return (
-    <div className="bg-card border border-primary/20 rounded-lg p-8 terminal-glow-box">
+    <div className="bg-surface-container border border-outline-variant/15 p-8">
       <h3 className="text-2xl font-bold mb-2">Get Signal, Not Noise</h3>
       <p className="text-muted-foreground mb-6">
         Practical engineering leadership insights delivered to your inbox. No fluff, just actionable advice.
@@ -40,7 +40,7 @@ export function NewsletterSignup() {
         <Button
           type="submit"
           disabled={status === "loading"}
-          className="bg-primary text-primary-foreground hover:bg-primary/90 font-bold terminal-glow"
+          className="bg-primary text-primary-foreground hover:bg-primary/90 font-bold"
         >
           {status === "loading" ? "Subscribing..." : "Subscribe"}
         </Button>

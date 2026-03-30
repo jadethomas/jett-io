@@ -14,12 +14,12 @@ export default function AboutPage() {
           {/* Header */}
           <div className="mb-12">
             <h1 className="text-5xl md:text-6xl font-bold mb-6">About</h1>
-            <p className="text-2xl text-primary terminal-glow font-bold">Signal Over Noise</p>
+            <p className="text-2xl text-primary font-bold font-headline">Signal Over Noise</p>
           </div>
 
           {/* Main content */}
           <div className="space-y-8 text-lg leading-relaxed">
-            <div className="bg-card border border-border rounded-lg p-8">
+            <div className="bg-surface-container border border-outline-variant/15 p-8">
               <h2 className="text-3xl font-bold mb-6">Who I Am</h2>
               <div className="space-y-4 text-card-foreground">
                 <p>
@@ -39,7 +39,7 @@ export default function AboutPage() {
               </div>
             </div>
 
-            <div className="bg-card border border-border rounded-lg p-8">
+            <div className="bg-surface-container border border-outline-variant/15 p-8">
               <h2 className="text-3xl font-bold mb-6">Why This Blog Exists</h2>
               <div className="space-y-4 text-card-foreground">
                 <p>
@@ -60,7 +60,7 @@ export default function AboutPage() {
               </div>
             </div>
 
-            <div className="bg-card border border-border rounded-lg p-8">
+            <div className="bg-surface-container border border-outline-variant/15 p-8">
               <h2 className="text-3xl font-bold mb-6">What I Write About</h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
@@ -94,7 +94,7 @@ export default function AboutPage() {
               </div>
             </div>
 
-            <div className="bg-card border border-primary/20 rounded-lg p-8 terminal-glow-box">
+            <div className="bg-surface-container border border-outline-variant/15 p-8">
               <h2 className="text-3xl font-bold mb-6">Get in Touch</h2>
               <p className="text-card-foreground mb-6">
                 Have questions? Want to discuss a post? Disagree with something I wrote? I'm always interested in
@@ -103,7 +103,7 @@ export default function AboutPage() {
               <div className="flex flex-wrap gap-4">
                 <Button
                   asChild
-                  className="bg-primary text-primary-foreground hover:bg-primary/90 font-bold terminal-glow"
+                  className="bg-primary text-primary-foreground hover:bg-primary/90 font-bold"
                 >
                   <a href="mailto:hello@jett.io">
                     <Mail className="w-4 h-4 mr-2" />
