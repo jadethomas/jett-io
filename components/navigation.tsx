@@ -26,9 +26,8 @@ export function Navigation() {
 
         <div className="hidden md:flex items-center space-x-12">
           {navLinks.map((link) => {
-            const isActive = link.href === "/about"
-              ? pathname === "/about"
-              : false
+            const isActive = pathname === link.href ||
+              (link.href !== "/" && pathname.startsWith(link.href))
 
             return (
               <Link
