@@ -49,7 +49,7 @@ export function LatestLogs() {
         </div>
 
         {/* Sidebar placeholder — filled by JETT-17 */}
-        <div className="col-span-12 lg:col-span-5" aria-hidden="true" />
+        <div className="col-span-12 lg:col-span-5" />
       </div>
     </section>
   )
