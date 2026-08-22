@@ -16,6 +16,9 @@ export function Navigation() {
             <Link href="/blog" className="text-foreground hover:text-primary transition-colors font-medium">
               Blog
             </Link>
+            <Link href="/faq" className="text-foreground hover:text-primary transition-colors font-medium">
+              FAQ
+            </Link>
             <Link href="/about" className="text-foreground hover:text-primary transition-colors font-medium">
               About
             </Link>
