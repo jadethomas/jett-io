@@ -1,8 +1,12 @@
 import fs from "fs"
 import path from "path"
 import matter from "gray-matter"
+import { format, parseISO } from "date-fns"
 
 const postsDirectory = path.join(process.cwd(), "content/posts")
+
+/** Shown when a post's frontmatter omits `image`, so a missing field never breaks the build. */
+const FALLBACK_POST_IMAGE = "/images/hero-kapiti-sunset.jpg"
 
 export interface PostMetadata {
   title: string
@@ -12,6 +16,13 @@ export interface PostMetadata {
   readTime: string
   author: string
   slug: string
+  image: string
+  imageAlt: string
+}
+
+/** Renders a raw frontmatter date ("2025-01-15") for display ("Jan 15, 2025"). */
+export function formatPostDate(date: string): string {
+  return format(parseISO(date), "MMM d, yyyy")
 }
 
 export interface Post extends PostMetadata {
@@ -41,6 +52,8 @@ export function getAllPosts(): PostMetadata[] {
         category: data.category,
         readTime: data.readTime,
         author: data.author,
+        image: data.image ?? FALLBACK_POST_IMAGE,
+        imageAlt: data.imageAlt ?? "",
       } as PostMetadata
     })
 
@@ -62,6 +75,8 @@ export function getPostBySlug(slug: string): Post | null {
       category: data.category,
       readTime: data.readTime,
       author: data.author,
+      image: data.image ?? FALLBACK_POST_IMAGE,
+      imageAlt: data.imageAlt ?? "",
       content,
     }
   } catch {

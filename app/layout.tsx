@@ -1,25 +1,13 @@
 import type React from "react"
 import type { Metadata } from "next"
-import { Inter, Public_Sans, Space_Grotesk, JetBrains_Mono } from "next/font/google"
+import { Source_Sans_3, JetBrains_Mono } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
 import "./globals.css"
 
-const inter = Inter({
+const sourceSans = Source_Sans_3({
   subsets: ["latin"],
-  variable: "--font-inter",
-  weight: ["400", "700", "800", "900"],
-})
-
-const publicSans = Public_Sans({
-  subsets: ["latin"],
-  variable: "--font-public-sans",
-  weight: ["300", "400", "600"],
-})
-
-const spaceGrotesk = Space_Grotesk({
-  subsets: ["latin"],
-  variable: "--font-space-grotesk",
-  weight: ["300", "500", "700"],
+  variable: "--font-source-sans",
+  weight: ["400", "600", "700", "800"],
 })
 
 const jetbrainsMono = JetBrains_Mono({
@@ -41,7 +29,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`dark ${inter.variable} ${publicSans.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable}`}
+      className={`dark ${sourceSans.variable} ${jetbrainsMono.variable}`}
     >
       <body>
         {children}
