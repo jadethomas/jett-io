@@ -3,95 +3,44 @@
 
 @custom-variant dark (&:is(.dark *));
 
-/* Monolithic Blueprint Design System */
+/* Coastal Signal Design System */
 :root {
-  /* MD3 Color Tokens — Primary */
-  --primary: #36D336;
-  --primary-container: #36D336;
-  --on-primary: #002780;
-  --on-primary-container: #000000;
-  --primary-fixed: #dce1ff;
-  --primary-fixed-dim: #b6c4ff;
-  --on-primary-fixed: #001551;
-  --on-primary-fixed-variant: #0039b3;
-  --inverse-primary: #36D336;
-  --surface-tint: #36D336;
-
-  /* MD3 Color Tokens — Secondary */
-  --secondary: #b6c4ff;
-  --secondary-container: #2d4490;
-  --on-secondary: #0e2976;
-  --on-secondary-container: #a3b5ff;
-  --secondary-fixed: #dce1ff;
-  --secondary-fixed-dim: #b6c4ff;
-  --on-secondary-fixed: #001551;
-  --on-secondary-fixed-variant: #2b418d;
-
-  /* MD3 Color Tokens — Tertiary */
-  --tertiary: #ffb5a0;
-  --tertiary-container: #c13301;
-  --on-tertiary: #601400;
-  --on-tertiary-container: #ffe1d9;
-  --tertiary-fixed: #ffdbd1;
-  --tertiary-fixed-dim: #ffb5a0;
-  --on-tertiary-fixed: #3b0900;
-  --on-tertiary-fixed-variant: #872100;
-
-  /* MD3 Color Tokens — Surface Hierarchy */
-  --background: #131313;
-  --surface: #131313;
-  --surface-dim: #131313;
-  --surface-bright: #3a3939;
-  --surface-container-lowest: #0e0e0e;
-  --surface-container-low: #1c1b1b;
-  --surface-container: #201f1f;
-  --surface-container-high: #2a2a2a;
-  --surface-container-highest: #353534;
-  --surface-variant: #353534;
-
-  /* MD3 Color Tokens — On-Surface */
-  --on-surface: #e5e2e1;
-  --on-surface-variant: #c3c5d9;
-  --on-background: #e5e2e1;
-  --inverse-surface: #e5e2e1;
-  --inverse-on-surface: #313030;
-
-  /* MD3 Color Tokens — Outline */
-  --outline: #8d90a2;
-  --outline-variant: #434656;
-
-  /* MD3 Color Tokens — Error */
-  --error: #ffb4ab;
-  --error-container: #93000a;
-  --on-error: #690005;
-  --on-error-container: #ffdad6;
+  /* Brand palette */
+  --navy: #001632;
+  --navy-deep: #001126;
+  --card-surface: #00214c;
+  --ink: #f2f5f8;
+  --amber: #faa61a;
+  --amber-hover: #feebca;
+  --cyan: #54c0e4;
+  --security-red: #e95160;
 
   /* Semantic tokens (shadcn/ui compatibility) */
-  --foreground: var(--on-surface);
-  --card: var(--surface-container);
-  --card-foreground: var(--on-surface);
-  --popover: var(--surface-container);
-  --popover-foreground: var(--on-surface);
-  --primary-foreground: var(--on-primary-container);
-  --secondary-foreground: var(--on-surface);
-  --muted: var(--surface-container-high);
-  --muted-foreground: var(--on-surface-variant);
-  --accent: var(--primary);
-  --accent-foreground: var(--on-primary-container);
-  --destructive: oklch(0.577 0.245 27.325);
-  --destructive-foreground: #ffffff;
-  --border: var(--surface-container-high);
-  --input: var(--surface-container-high);
-  --ring: var(--primary);
-  --radius: 0px;
+  --background: var(--navy);
+  --foreground: var(--ink);
+  --card: var(--card-surface);
+  --card-foreground: var(--ink);
+  --popover: var(--card-surface);
+  --popover-foreground: var(--ink);
+  --primary: var(--amber);
+  --primary-foreground: var(--navy);
+  --secondary: var(--card-surface);
+  --secondary-foreground: var(--ink);
+  --muted: var(--card-surface);
+  --muted-foreground: rgba(242, 245, 248, 0.68);
+  --accent: var(--cyan);
+  --accent-foreground: var(--navy);
+  --destructive: var(--security-red);
+  --destructive-foreground: var(--ink);
+  --border: rgba(84, 192, 228, 0.18);
+  --input: rgba(242, 245, 248, 0.3);
+  --ring: var(--cyan);
+  --radius: 18px;
 }
 
 @theme inline {
   /* Font families — resolved via next/font CSS variables */
-  --font-sans: var(--font-inter), "Inter", system-ui, -apple-system, sans-serif;
-  --font-headline: var(--font-inter), "Inter", system-ui, sans-serif;
-  --font-body: var(--font-public-sans), "Public Sans", system-ui, sans-serif;
-  --font-label: var(--font-space-grotesk), "Space Grotesk", system-ui, sans-serif;
+  --font-sans: var(--font-source-sans), "Source Sans 3", system-ui, -apple-system, sans-serif;
   --font-mono: var(--font-jetbrains-mono), "JetBrains Mono", "Courier New", monospace;
 
   /* Color tokens — shadcn/ui semantic */
@@ -115,59 +64,24 @@
   --color-input: var(--input);
   --color-ring: var(--ring);
 
-  /* Color tokens — MD3 surface hierarchy */
-  --color-surface: var(--surface);
-  --color-surface-dim: var(--surface-dim);
-  --color-surface-bright: var(--surface-bright);
-  --color-surface-container-lowest: var(--surface-container-lowest);
-  --color-surface-container-low: var(--surface-container-low);
-  --color-surface-container: var(--surface-container);
-  --color-surface-container-high: var(--surface-container-high);
-  --color-surface-container-highest: var(--surface-container-highest);
-  --color-surface-variant: var(--surface-variant);
-  --color-surface-tint: var(--surface-tint);
+  /* Color tokens — brand values under their own name. Amber, cyan and
+     security-red are also reachable semantically as primary, accent and
+     destructive; navy and amber-hover have no semantic alias. */
+  --color-navy: var(--navy);
+  --color-navy-deep: var(--navy-deep);
+  --color-amber: var(--amber);
+  --color-amber-hover: var(--amber-hover);
+  --color-cyan: var(--cyan);
+  --color-security-red: var(--security-red);
 
-  /* Color tokens — MD3 on-surface */
-  --color-on-surface: var(--on-surface);
-  --color-on-surface-variant: var(--on-surface-variant);
-  --color-on-background: var(--on-background);
-  --color-inverse-surface: var(--inverse-surface);
-  --color-inverse-on-surface: var(--inverse-on-surface);
+  /* Border radius — derived from the 18px panel anchor */
+  --radius-sm: calc(var(--radius) - 4px); /* 14px — cards */
+  --radius-md: calc(var(--radius) - 2px); /* 16px — images */
+  --radius-lg: var(--radius); /* 18px — panels */
+  --radius-xl: calc(var(--radius) + 4px); /* 22px — large surfaces */
 
-  /* Color tokens — MD3 primary */
-  --color-primary-container: var(--primary-container);
-  --color-on-primary: var(--on-primary);
-  --color-on-primary-container: var(--on-primary-container);
-  --color-primary-fixed: var(--primary-fixed);
-  --color-primary-fixed-dim: var(--primary-fixed-dim);
-  --color-inverse-primary: var(--inverse-primary);
-
-  /* Color tokens — MD3 secondary */
-  --color-secondary-container: var(--secondary-container);
-  --color-on-secondary: var(--on-secondary);
-  --color-on-secondary-container: var(--on-secondary-container);
-
-  /* Color tokens — MD3 tertiary */
-  --color-tertiary: var(--tertiary);
-  --color-tertiary-container: var(--tertiary-container);
-  --color-on-tertiary: var(--on-tertiary);
-  --color-on-tertiary-container: var(--on-tertiary-container);
-
-  /* Color tokens — MD3 outline */
-  --color-outline: var(--outline);
-  --color-outline-variant: var(--outline-variant);
-
-  /* Color tokens — MD3 error */
-  --color-error: var(--error);
-  --color-error-container: var(--error-container);
-  --color-on-error: var(--on-error);
-  --color-on-error-container: var(--on-error-container);
-
-  /* Border radius — monolithic 0px, keep full for pills */
-  --radius-sm: 0px;
-  --radius-md: 0px;
-  --radius-lg: 0px;
-  --radius-xl: 0px;
+  /* Fluid display size — tops out at the design's 68px */
+  --text-hero: clamp(2.75rem, 5vw + 1.5rem, 4.25rem);
 }
 
 @layer base {
@@ -175,43 +89,20 @@
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-[#080808] text-foreground font-body antialiased;
+    @apply bg-background text-foreground font-sans antialiased;
   }
 
-  /* Selection styling — primary-container green */
   ::selection {
-    background-color: #36D336;
-    color: #000000;
+    background-color: var(--amber);
+    color: var(--navy);
   }
 
   /* Code block styling */
   pre {
-    @apply bg-surface-container-lowest border border-outline-variant/15 p-4 overflow-x-auto;
+    @apply bg-card border border-border rounded-sm p-4 overflow-x-auto;
   }
 
   code {
-    @apply font-mono text-primary text-sm;
-  }
-
-}
-
-@layer utilities {
-  /* Blueprint grid background */
-  .blueprint-grid {
-    background-image:
-      linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
-      linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
-    background-size: 40px 40px;
-  }
-
-  /* Ghost border — outline-variant at 15% opacity */
-  .ghost-border {
-    border: 1px solid rgb(67 70 86 / 0.15);
-  }
-
-  /* Text stroke for display headings */
-  .text-stroke {
-    -webkit-text-stroke: 1px rgba(229, 226, 225, 0.3);
-    color: transparent;
+    @apply font-mono text-cyan text-sm;
   }
 }

@@ -9,17 +9,17 @@ export default function AboutPage() {
     <div className="min-h-screen flex flex-col">
       <Navigation />
 
-      <main className="flex-1 container mx-auto px-4 py-12">
+      <main className="flex-1 mx-auto w-full max-w-[1240px] px-6 md:px-14 py-12">
         <div className="max-w-4xl mx-auto">
           {/* Header */}
           <div className="mb-12">
             <h1 className="text-5xl md:text-6xl font-bold mb-6">About</h1>
-            <p className="text-2xl text-primary font-bold font-headline">Signal Over Noise</p>
+            <p className="text-2xl text-primary font-bold">Signal Over Noise</p>
           </div>
 
           {/* Main content */}
           <div className="space-y-8 text-lg leading-relaxed">
-            <div className="bg-surface-container border border-outline-variant/15 p-8">
+            <div className="bg-card border border-border p-8">
               <h2 className="text-3xl font-bold mb-6">Who I Am</h2>
               <div className="space-y-4 text-card-foreground">
                 <p>
@@ -39,7 +39,7 @@ export default function AboutPage() {
               </div>
             </div>
 
-            <div className="bg-surface-container border border-outline-variant/15 p-8">
+            <div className="bg-card border border-border p-8">
               <h2 className="text-3xl font-bold mb-6">Why This Blog Exists</h2>
               <div className="space-y-4 text-card-foreground">
                 <p>
@@ -60,7 +60,7 @@ export default function AboutPage() {
               </div>
             </div>
 
-            <div className="bg-surface-container border border-outline-variant/15 p-8">
+            <div className="bg-card border border-border p-8">
               <h2 className="text-3xl font-bold mb-6">What I Write About</h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
@@ -94,7 +94,7 @@ export default function AboutPage() {
               </div>
             </div>
 
-            <div className="bg-surface-container border border-outline-variant/15 p-8">
+            <div className="bg-card border border-border p-8">
               <h2 className="text-3xl font-bold mb-6">Get in Touch</h2>
               <p className="text-card-foreground mb-6">
                 Have questions? Want to discuss a post? Disagree with something I wrote? I'm always interested in

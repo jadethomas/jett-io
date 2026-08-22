@@ -5,8 +5,18 @@ import type React from "react"
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
+import { cn } from "@/lib/utils"
 
-export function NewsletterSignup() {
+interface NewsletterSignupProps {
+  /**
+   * "card" brings its own surface and border. "bare" drops both so a caller can
+   * compose its own chrome — the homepage sits this form on a photo panel.
+   */
+  variant?: "card" | "bare"
+  className?: string
+}
+
+export function NewsletterSignup({ variant = "card", className }: NewsletterSignupProps) {
   const [email, setEmail] = useState("")
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle")
 
@@ -14,7 +24,7 @@ export function NewsletterSignup() {
     e.preventDefault()
     setStatus("loading")
 
-    // Simulate API call
+    // No backend on a static export — the form is presentational for now.
     setTimeout(() => {
       setStatus("success")
       setEmail("")
@@ -22,31 +32,33 @@ export function NewsletterSignup() {
   }
 
   return (
-    <div className="bg-surface-container border border-outline-variant/15 p-8">
-      <h3 className="text-2xl font-bold mb-2">Get Signal, Not Noise</h3>
-      <p className="text-muted-foreground mb-6">
-        Practical engineering leadership insights delivered to your inbox. No fluff, just actionable advice.
+    <div className={cn(variant === "card" && "rounded-sm border border-border bg-card p-8", className)}>
+      <h2 className="mb-3 text-[34px] font-extrabold leading-tight tracking-tight">Get signal, not noise</h2>
+      <p className="mb-7 text-[17px] leading-relaxed text-foreground/80">
+        Practical engineering leadership insights in your inbox. No fluff, just actionable advice.
       </p>
 
-      <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3">
+      <form onSubmit={handleSubmit} className="flex max-w-[480px] flex-col gap-3 sm:flex-row">
+        <label htmlFor="newsletter-email" className="sr-only">
+          Email address
+        </label>
         <Input
+          id="newsletter-email"
           type="email"
-          placeholder="your@email.com"
+          placeholder="you@example.com"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
-          className="flex-1 bg-background border-primary/30 focus:border-primary"
+          className="h-auto flex-1 border-input bg-navy-deep/60 px-[22px] py-3.5 text-base"
         />
-        <Button
-          type="submit"
-          disabled={status === "loading"}
-          className="bg-primary text-primary-foreground hover:bg-primary/90 font-bold"
-        >
+        <Button type="submit" size="lg" disabled={status === "loading"} className="px-7 font-bold">
           {status === "loading" ? "Subscribing..." : "Subscribe"}
         </Button>
       </form>
 
-      {status === "success" && <p className="mt-4 text-primary text-sm">Thanks for subscribing!</p>}
+      <p aria-live="polite" className="mt-4 text-sm text-primary empty:mt-0">
+        {status === "success" ? "Thanks for subscribing!" : ""}
+      </p>
     </div>
   )
 }

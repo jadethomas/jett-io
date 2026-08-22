@@ -1,37 +1,43 @@
-# GitHub Pages Deployment Guide
+# Cloudflare Pages Deployment Guide
 
-This site is configured to automatically deploy to GitHub Pages at **jett.io** when you push to the `main` branch.
+This site is a Next.js static export (`output: 'export'`) hosted on **Cloudflare Pages** at **jett.io**. Every push to `main` deploys automatically.
 
 ## Initial Setup (One-Time)
 
-### 1. Configure GitHub Pages
+### 1. Create the Pages project
 
-1. Go to your GitHub repository settings
-2. Navigate to **Settings → Pages**
-3. Under "Build and deployment":
-   - **Source**: Select "GitHub Actions"
-4. Save the settings
+The project is named `jett-io`. If it does not exist yet, the first `wrangler pages deploy` will offer to create it, or you can create it up front:
 
-### 2. Configure Custom Domain (jett.io)
+```bash
+wrangler pages project create jett-io --production-branch main
+```
 
-1. In the same **Settings → Pages** section
-2. Under "Custom domain", enter: `jett.io`
-3. Click "Save"
-4. Configure your DNS settings at your domain registrar:
-   - Add an `A` record pointing to GitHub Pages IPs:
-     - `185.199.108.153`
-     - `185.199.109.153`
-     - `185.199.110.153`
-     - `185.199.111.153`
-   - Or add a `CNAME` record pointing to: `<your-username>.github.io`
-5. Wait for DNS propagation (can take up to 24 hours)
-6. Once DNS is configured, enable "Enforce HTTPS" in GitHub Pages settings
+### 2. Configure the custom domain (jett.io)
+
+1. In the Cloudflare dashboard, go to **Workers & Pages → jett-io → Custom domains**
+2. Click **Set up a custom domain** and enter `jett.io`
+3. If `jett.io` is already on Cloudflare DNS, the required record is created for you
+4. If the domain is registered elsewhere, either:
+   - Move the nameservers to Cloudflare (recommended — enables automatic TLS and the fastest edge routing), or
+   - Add a `CNAME` record at your registrar pointing `jett.io` to `jett-io.pages.dev`
+5. TLS certificates are issued automatically — no manual certificate step
+
+Repeat for `www.jett.io` if you want the apex and www both served.
+
+### 3. Add CI secrets
+
+For the GitHub Actions workflow to deploy, add two repository secrets under **Settings → Secrets and variables → Actions**:
+
+| Secret | Where to get it |
+|---|---|
+| `CLOUDFLARE_API_TOKEN` | Cloudflare dashboard → My Profile → API Tokens → Create Token → use the **Edit Cloudflare Workers** template, or a custom token with `Account → Cloudflare Pages → Edit` |
+| `CLOUDFLARE_ACCOUNT_ID` | Cloudflare dashboard → Workers & Pages → Account ID in the right sidebar |
 
 ## Deployment Workflow
 
-### Automatic Deployment
+### Automatic deployment
 
-Every push to the `main` branch automatically triggers a deployment:
+Every push to `main` triggers `.github/workflows/deploy.yml`:
 
 ```bash
 git add .
@@ -39,25 +45,36 @@ git commit -m "Your changes"
 git push origin main
 ```
 
-The GitHub Actions workflow will:
+The workflow will:
 1. Check out the code
 2. Install dependencies with `npm ci`
 3. Build the site with `npm run build` (creates static files in `/out`)
-4. Deploy to GitHub Pages
+4. Deploy `/out` to Cloudflare Pages via `wrangler-action`
 
-### Manual Deployment
+### Manual deployment
 
-You can also trigger a deployment manually:
+From the Actions tab:
 
-1. Go to **Actions** tab in your GitHub repository
-2. Select "Deploy to GitHub Pages" workflow
-3. Click "Run workflow"
-4. Select the `main` branch
-5. Click "Run workflow"
+1. Go to **Actions** in the GitHub repository
+2. Select the "Deploy to Cloudflare Pages" workflow
+3. Click **Run workflow** and select the `main` branch
+
+Or straight from your machine, which is often faster for a one-off:
+
+```bash
+npm run build
+wrangler pages deploy out --project-name=jett-io
+```
+
+Add `--branch=main` to publish to production; without it, wrangler creates a preview deployment on its own branch alias.
+
+### Preview deployments
+
+Any deploy with a `--branch` other than `main` produces a preview URL of the form `<branch>.jett-io.pages.dev`, which is useful for sharing work in progress without touching production.
 
 ## Local Testing
 
-Before pushing, always test the static export locally:
+Before pushing, test the static export locally:
 
 ```bash
 # Development mode
@@ -66,66 +83,60 @@ npm run dev
 # Build static export
 npm run build
 
-# The static files will be in the /out directory
-# You can serve them locally with:
-npx serve out
+# The static files land in /out. Serve them exactly as Cloudflare will:
+npx wrangler pages dev out
 ```
 
-## Workflow File
-
-The deployment is configured in `.github/workflows/deploy.yml`
-
-Key features:
-- Runs on push to `main`
-- Uses Node.js 20
-- Caches npm dependencies for faster builds
-- Uploads the `/out` directory to GitHub Pages
-- Handles concurrent deployments safely
+`wrangler pages dev` is closer to production than `npx serve` because it applies the same routing and trailing-slash behaviour as the Pages edge.
 
 ## Configuration Files
 
-- **next.config.mjs**: Configured with `output: 'export'` for static export
-- **public/CNAME**: Contains the custom domain `jett.io`
-- **public/.nojekyll**: Tells GitHub Pages not to use Jekyll processing
+- **next.config.mjs** — `output: 'export'` for static export, `trailingSlash: true`, `images.unoptimized`
+- **wrangler.toml** — declares the project name and `pages_build_output_dir = "out"`
+- **.github/workflows/deploy.yml** — the CI deployment pipeline
 
 ## Troubleshooting
 
-### Build Fails
+### Build fails
 
 - Check the Actions tab for error logs
 - Test the build locally: `npm run build`
 - Ensure all dependencies are in `package.json`
 
-### Pages Not Updating
+### Deploy step fails with an authentication error
 
-- Check Actions tab to see if deployment completed successfully
+- Confirm `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID` are set as repository secrets
+- Confirm the token has the `Cloudflare Pages → Edit` permission — a token scoped only to Workers will not deploy Pages
+- Locally, run `wrangler whoami` to confirm which account you are authenticated against
+
+### Pages not updating
+
+- Check the Actions tab to confirm the deployment completed
+- Check **Workers & Pages → jett-io → Deployments** for the most recent build
 - Hard refresh your browser (Cmd+Shift+R on Mac, Ctrl+Shift+R on Windows)
-- Wait a few minutes for CDN to update
+- Purge the cache from the Cloudflare dashboard if a stale asset persists
 
-### 404 Errors
+### 404 errors
 
 - Ensure `trailingSlash: true` is set in `next.config.mjs`
-- Check that all links in your site use correct paths
-- Verify that the `/out` directory contains all expected files
+- Confirm `/out` contains the expected `index.html` files after a build
+- Check that internal links use `next/link` and root-relative paths
 
-### Custom Domain Not Working
+### Custom domain not working
 
-- Verify DNS settings at your domain registrar
-- Check that CNAME file exists in `/public/CNAME`
-- Ensure "Custom domain" is set in GitHub Pages settings
-- Wait for DNS propagation (up to 24 hours)
+- Verify the domain shows as **Active** under the project's Custom domains tab
+- If the domain is not on Cloudflare nameservers, confirm the `CNAME` to `jett-io.pages.dev` has propagated (`dig jett.io`)
+- Certificate issuance can take a few minutes after the domain is attached
 
 ## Performance
 
-The site is optimized for GitHub Pages:
-- Static HTML export (no server required)
-- Images set to `unoptimized: true`
-- No runtime API dependencies
-- Fast loading times
+The site is well suited to Pages:
+- Static HTML export, served from Cloudflare's edge network
+- No server runtime and no API dependencies
+- Images are pre-optimised at build authoring time (`images.unoptimized` is set, so Next does not transform them)
 
 ## Monitoring
 
-- View deployment status: **Actions** tab in GitHub
-- Check live site: https://jett.io
-- Monitor build times and identify any issues early
-
+- Deployment status: **Actions** tab in GitHub, or **Workers & Pages → jett-io → Deployments**
+- Live site: https://jett.io
+- Analytics: **Workers & Pages → jett-io → Analytics** for edge request and bandwidth data

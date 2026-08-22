@@ -1,134 +1,142 @@
-import { Navigation } from "@/components/navigation"
-import { Footer } from "@/components/footer"
-import { Logo } from "@/components/logo"
-import { PostCard } from "@/components/post-card"
-import { NewsletterSignup } from "@/components/newsletter-signup"
-import { Button } from "@/components/ui/button"
-import { ArrowRight } from "lucide-react"
+import Image from "next/image"
 import Link from "next/link"
+import { Container } from "@/components/container"
+import { Footer } from "@/components/footer"
+import { Navigation } from "@/components/navigation"
+import { NewsletterSignup } from "@/components/newsletter-signup"
+import { PostCard } from "@/components/post-card"
+import { Button } from "@/components/ui/button"
+import { getAllPosts } from "@/lib/blog"
 
-// Sample featured posts data
-const featuredPosts = [
-  {
-    title: "Everyone's Wrong About AI Agents in Production",
-    excerpt:
-      "The hype cycle is real, but so are the practical applications. Here's what actually works in enterprise AI deployments.",
-    date: "Jan 15, 2025",
-    readTime: "8 min read",
-    category: "AI",
-    slug: "ai-agents-production",
-  },
-  {
-    title: "The DevOps Practices That Actually Ship",
-    excerpt:
-      "Forget the buzzwords. These are the battle-tested practices that reduce deployment friction and increase velocity.",
-    date: "Jan 10, 2025",
-    readTime: "6 min read",
-    category: "DevOps",
-    slug: "devops-practices-ship",
-  },
-  {
-    title: "Security Theater vs. Real Security",
-    excerpt:
-      "Stop checking boxes and start building systems that actually protect your users. A practical guide to security that matters.",
-    date: "Jan 5, 2025",
-    readTime: "10 min read",
-    category: "Security",
-    slug: "security-theater-real",
-  },
-]
+const CREDENTIALS = ["6+ yrs leading teams", "AI in production", "DevOps · Security · Resilience"]
 
-export default function HomePage() {
+export default function Home() {
+  const latestPosts = getAllPosts().slice(0, 3)
+
   return (
-    <div className="min-h-screen flex flex-col">
-      <Navigation />
+    <div className="min-h-screen">
+      {/* Hero */}
+      <header className="relative overflow-hidden">
+        <Image
+          src="/images/hero-kapiti-sunset.jpg"
+          alt="Sunset over Kāpiti Island"
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover object-[center_40%]"
+        />
+        {/* Scrim, so the headline holds contrast over the photo */}
+        <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,17,38,0.72)_0%,rgba(0,22,50,0.35)_45%,rgba(0,22,50,0.96)_100%)]" />
 
-      <main className="flex-1">
-        {/* Hero Section */}
-        <section className="container mx-auto px-4 py-20 md:py-32">
-          <div className="max-w-4xl mx-auto text-center">
-            <Logo className="justify-center mb-8" />
-            <h1 className="text-5xl md:text-7xl font-bold mb-6 text-balance">
-              Engineering Practices That <span className="text-primary">Matter</span>
+        <div className="relative">
+          <Navigation overlay />
+
+          <Container className="pb-28 pt-20 md:pb-35 md:pt-30">
+            <p className="mb-3.5 text-sm font-bold uppercase tracking-[0.16em] text-primary">
+              Engineering leadership in the age of AI
+            </p>
+            <h1 className="mb-5 max-w-[820px] text-hero font-extrabold leading-[1.04] tracking-[-0.015em] text-balance">
+              Signal over noise.
+              <br />
+              Always.
             </h1>
-            <p className="text-xl md:text-2xl text-muted-foreground mb-8 leading-relaxed text-balance">
-              Engineering Leadership in the Age of AI: Signal Over Noise
+            <p className="mb-9 max-w-[560px] text-xl leading-relaxed text-foreground/85 text-pretty">
+              Cut through the hype. Practical, battle-tested takes on AI, DevOps, security, and resilience — from an
+              engineering leader who&apos;s been in the trenches.
             </p>
-            <p className="text-lg text-card-foreground mb-10 max-w-2xl mx-auto leading-relaxed text-pretty">
-              Cut through the hype. Get practical, battle-tested insights on AI, DevOps, security, and resilience from
-              an engineering leader who's been in the trenches.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button
-                asChild
-                size="lg"
-                className="bg-primary text-primary-foreground hover:bg-primary/90 font-bold text-lg"
-              >
-                <Link href="/blog">
-                  Read the Blog <ArrowRight className="ml-2 w-5 h-5" />
-                </Link>
+            <div className="flex flex-wrap items-center gap-4">
+              <Button asChild size="xl" className="font-bold">
+                <Link href="/blog">Read the blog</Link>
+              </Button>
+              <Button asChild variant="hairline" size="xl" className="font-semibold">
+                <Link href="/about">About me</Link>
               </Button>
             </div>
-          </div>
-        </section>
+          </Container>
+        </div>
+      </header>
 
-        {/* Featured Posts */}
-        <section className="container mx-auto px-4 py-16">
-          <div className="mb-12">
-            <h2 className="text-4xl font-bold mb-4">Latest Posts</h2>
-            <p className="text-muted-foreground text-lg">
-              Opinionated takes on what actually works in modern engineering
-            </p>
+      <main>
+        {/* Latest posts */}
+        <Container className="pt-22">
+          <div className="mb-9 flex flex-col gap-4 sm:flex-row sm:items-baseline sm:justify-between">
+            <div>
+              <h2 className="mb-2 text-[38px] font-extrabold tracking-tight">Latest posts</h2>
+              <p className="text-[17px] text-foreground/65">
+                Opinionated takes on what actually works in modern engineering.
+              </p>
+            </div>
+            <Link href="/blog" className="font-bold whitespace-nowrap text-accent transition-colors hover:text-primary">
+              View all posts →
+            </Link>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
-            {featuredPosts.map((post) => (
+          <div className="grid grid-cols-1 gap-7 md:grid-cols-2 lg:grid-cols-3">
+            {latestPosts.map((post) => (
               <PostCard key={post.slug} {...post} />
             ))}
           </div>
 
-          <div className="text-center">
-            <Button
-              asChild
-              variant="outline"
-              size="lg"
-              className="border-primary/30 hover:border-primary bg-transparent"
-            >
-              <Link href="/blog">View All Posts</Link>
-            </Button>
-          </div>
-        </section>
-
-        {/* About Section */}
-        <section className="container mx-auto px-4 py-16">
-          <div className="max-w-3xl mx-auto bg-surface-container border border-outline-variant/15 p-8 md:p-12">
-            <h2 className="text-3xl font-bold mb-6">Why This Blog Exists</h2>
-            <div className="space-y-4 text-card-foreground leading-relaxed">
-              <p>
-                I'm an Engineering Manager at BNZ with 6+ years leading digital engineering teams. I've seen the AI hype
-                cycle from the inside, and I've learned what actually works versus what just sounds good in meetings.
+          {/* Why this blog exists */}
+          <section className="mt-28 grid grid-cols-1 items-center gap-12 lg:grid-cols-[1.05fr_1fr] lg:gap-14">
+            <div className="relative">
+              <div className="relative h-[320px] overflow-hidden rounded-md sm:h-[420px] lg:h-[520px]">
+                <Image
+                  src="/images/about-kapiti-horizon.jpg"
+                  alt="Pointing at the horizon, Kāpiti Island at dusk"
+                  fill
+                  sizes="(min-width: 1024px) 50vw, 100vw"
+                  className="object-cover"
+                />
+              </div>
+              <p className="absolute bottom-6 left-6 rounded-[10px] bg-navy-deep/75 px-4 py-2.5 text-[13px] font-semibold text-foreground/85 backdrop-blur-sm">
+                Kāpiti coast — where the thinking happens
               </p>
-              <p>
-                This blog is about cutting through the noise. Every post is designed to give you something you can
-                implement on Monday morning. No theory for theory's sake. No buzzword bingo. Just practical,
-                battle-tested insights.
-              </p>
-              <p className="text-primary font-bold">Signal over noise. Always.</p>
             </div>
-            <div className="mt-8">
-              <Button asChild variant="outline" className="border-primary/30 hover:border-primary bg-transparent">
-                <Link href="/about">Learn More About Me</Link>
+
+            <div>
+              <p className="mb-3 text-sm font-bold uppercase tracking-[0.16em] text-primary">Why this blog exists</p>
+              <h2 className="mb-4.5 text-[38px] font-extrabold leading-[1.12] tracking-tight text-pretty">
+                No theory for theory&apos;s sake. No buzzword bingo.
+              </h2>
+              <p className="mb-4 text-[17px] leading-relaxed text-foreground/80">
+                I&apos;m an Engineering Manager with 6+ years leading digital engineering teams. I&apos;ve seen the AI
+                hype cycle from the inside, and I&apos;ve learned what actually works versus what just sounds good in
+                meetings.
+              </p>
+              <p className="mb-7 text-[17px] leading-relaxed text-foreground/80">
+                Every post is designed to give you something you can implement on Monday morning. Practical,
+                battle-tested, signal over noise.
+              </p>
+              <ul className="mb-7 flex list-none flex-wrap gap-3">
+                {CREDENTIALS.map((credential) => (
+                  <li
+                    key={credential}
+                    className="rounded-full border border-accent/30 bg-accent/10 px-4 py-1.5 text-sm font-bold text-accent"
+                  >
+                    {credential}
+                  </li>
+                ))}
+              </ul>
+              <Button asChild size="lg" className="font-bold">
+                <Link href="/about">More about me</Link>
               </Button>
             </div>
-          </div>
-        </section>
+          </section>
 
-        {/* Newsletter Signup */}
-        <section className="container mx-auto px-4 py-16">
-          <div className="max-w-2xl mx-auto">
-            <NewsletterSignup />
-          </div>
-        </section>
+          {/* Subscribe */}
+          <section id="subscribe" className="relative mt-28 scroll-mt-24 overflow-hidden rounded-lg">
+            <Image
+              src="/images/subscribe-dusk-beach.jpg"
+              alt="Dusk over the beach"
+              fill
+              sizes="100vw"
+              className="object-cover object-[center_60%]"
+            />
+            <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(0,17,38,0.92)_0%,rgba(0,33,76,0.78)_55%,rgba(0,33,76,0.45)_100%)]" />
+            <NewsletterSignup variant="bare" className="relative max-w-[640px] p-8 md:p-16" />
+          </section>
+        </Container>
       </main>
 
       <Footer />

@@ -1,30 +1,47 @@
 import Link from "next/link"
+import { Container } from "./container"
 import { Logo } from "./logo"
-import { Search } from "lucide-react"
+import { Button } from "@/components/ui/button"
+import { cn } from "@/lib/utils"
 
-export function Navigation() {
+interface NavigationProps {
+  /**
+   * Renders the bar transparently so it can sit over the homepage hero photo.
+   * Every other page needs the sticky, opaque treatment.
+   */
+  overlay?: boolean
+}
+
+export function Navigation({ overlay = false }: NavigationProps) {
   return (
-    <nav className="bg-[#080808]/80 backdrop-blur-md sticky top-0 z-50">
-      <div className="container mx-auto px-4 py-4">
-        <div className="flex items-center justify-between">
-          <Link href="/" className="flex items-center gap-3 hover:opacity-80 transition-opacity">
-            <Logo />
-            <span className="text-xl font-bold">jett.io</span>
-          </Link>
+    <nav
+      className={cn(
+        "w-full",
+        overlay ? "relative z-10" : "sticky top-0 z-50 border-b border-border bg-background/80 backdrop-blur-md",
+      )}
+    >
+      <Container className="flex items-center justify-between py-6">
+        <Link
+          href="/"
+          className="flex items-center gap-3 transition-opacity hover:opacity-80"
+          aria-label="jett.io home"
+        >
+          <Logo />
+          <span className="text-[21px] font-bold">jett.io</span>
+        </Link>
 
-          <div className="flex items-center gap-6">
-            <Link href="/blog" className="text-foreground hover:text-primary transition-colors font-medium">
-              Blog
-            </Link>
-            <Link href="/about" className="text-foreground hover:text-primary transition-colors font-medium">
-              About
-            </Link>
-            <button className="text-foreground hover:text-primary transition-colors" aria-label="Search">
-              <Search className="w-5 h-5" />
-            </button>
-          </div>
+        <div className="flex items-center gap-6 sm:gap-8">
+          <Link href="/blog" className="font-semibold transition-colors hover:text-primary">
+            Blog
+          </Link>
+          <Link href="/about" className="font-semibold transition-colors hover:text-primary">
+            About
+          </Link>
+          <Button asChild className="px-5 font-bold">
+            <Link href="/#subscribe">Subscribe</Link>
+          </Button>
         </div>
-      </div>
+      </Container>
     </nav>
   )
 }

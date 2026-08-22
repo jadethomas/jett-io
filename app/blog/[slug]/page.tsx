@@ -3,7 +3,7 @@ import { notFound } from "next/navigation"
 import { Navigation } from "@/components/navigation"
 import { Footer } from "@/components/footer"
 import { ActionBox } from "@/components/action-box"
-import { getPostBySlug, getAllPosts } from "@/lib/blog"
+import { getPostBySlug, getAllPosts, formatPostDate } from "@/lib/blog"
 import { Calendar, Clock, ArrowLeft } from "lucide-react"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
@@ -39,11 +39,11 @@ const components = {
     <blockquote className="border-l-4 border-primary pl-4 italic my-6 text-muted-foreground" {...props} />
   ),
   code: (props: React.HTMLAttributes<HTMLElement>) => (
-    <code className="bg-surface-container-lowest text-primary px-1 py-0.5 text-sm font-mono" {...props} />
+    <code className="bg-card text-primary px-1 py-0.5 text-sm font-mono" {...props} />
   ),
   pre: (props: React.HTMLAttributes<HTMLPreElement>) => (
     <pre
-      className="bg-surface-container-lowest border border-outline-variant/15 p-4 overflow-x-auto my-6 font-mono text-sm"
+      className="bg-card border border-border p-4 overflow-x-auto my-6 font-mono text-sm"
       {...props}
     />
   ),
@@ -61,7 +61,7 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
       <Navigation />
 
       <main className="flex-1">
-        <article className="container mx-auto px-4 py-12 max-w-4xl">
+        <article className="mx-auto w-full max-w-4xl px-6 md:px-14 py-12">
           {/* Back button */}
           <Link
             href="/blog"
@@ -73,7 +73,7 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
 
           {/* Category tag */}
           <div className="mb-4">
-            <span className="inline-block px-3 py-1 text-xs font-bold bg-primary/10 text-primary border border-primary/30 font-label uppercase tracking-widest">
+            <span className="inline-block px-3 py-1 text-xs font-bold bg-primary/10 text-primary border border-primary/30 uppercase tracking-widest">
               {post.category}
             </span>
           </div>
@@ -82,10 +82,10 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
           <h1 className="text-5xl md:text-6xl font-bold mb-6 text-balance">{post.title}</h1>
 
           {/* Meta info */}
-          <div className="flex flex-wrap items-center gap-4 text-muted-foreground mb-8 pb-8 border-b border-outline-variant/15">
+          <div className="flex flex-wrap items-center gap-4 text-muted-foreground mb-8 pb-8 border-b border-border">
             <div className="flex items-center gap-2">
               <Calendar className="w-4 h-4" />
-              <span>{post.date}</span>
+              <span>{formatPostDate(post.date)}</span>
             </div>
             <div className="flex items-center gap-2">
               <Clock className="w-4 h-4" />
@@ -102,7 +102,7 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
           </div>
 
           {/* Share buttons */}
-          <div className="mt-12 pt-8 border-t border-outline-variant/15">
+          <div className="mt-12 pt-8 border-t border-border">
             <p className="text-sm text-muted-foreground mb-4">Share this post:</p>
             <div className="flex gap-3">
               <Button variant="outline" size="sm" className="border-border hover:border-primary/40 bg-transparent">
