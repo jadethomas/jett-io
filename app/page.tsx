@@ -5,6 +5,7 @@ import { Footer } from "@/components/footer"
 import { Navigation } from "@/components/navigation"
 import { NewsletterSignup } from "@/components/newsletter-signup"
 import { PostCard } from "@/components/post-card"
+import { Button } from "@/components/ui/button"
 import { getAllPosts } from "@/lib/blog"
 
 const CREDENTIALS = ["6+ yrs leading teams", "AI in production", "DevOps · Security · Resilience"]
@@ -44,18 +45,12 @@ export default function Home() {
               engineering leader who&apos;s been in the trenches.
             </p>
             <div className="flex flex-wrap items-center gap-4">
-              <Link
-                href="/blog"
-                className="rounded-full bg-primary px-7 py-3.5 text-[17px] font-bold text-primary-foreground transition-colors hover:bg-amber-hover"
-              >
-                Read the blog
-              </Link>
-              <Link
-                href="/about"
-                className="rounded-full border-[1.5px] border-foreground/35 px-6 py-3.5 text-[17px] font-semibold transition-colors hover:border-primary hover:text-primary"
-              >
-                About me
-              </Link>
+              <Button asChild size="xl" className="font-bold">
+                <Link href="/blog">Read the blog</Link>
+              </Button>
+              <Button asChild variant="hairline" size="xl" className="font-semibold">
+                <Link href="/about">About me</Link>
+              </Button>
             </div>
           </Container>
         </div>
@@ -123,12 +118,9 @@ export default function Home() {
                   </li>
                 ))}
               </ul>
-              <Link
-                href="/about"
-                className="inline-block rounded-full bg-primary px-6 py-3 font-bold text-primary-foreground transition-colors hover:bg-amber-hover"
-              >
-                More about me
-              </Link>
+              <Button asChild size="lg" className="font-bold">
+                <Link href="/about">More about me</Link>
+              </Button>
             </div>
           </section>
 

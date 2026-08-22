@@ -64,7 +64,9 @@
   --color-input: var(--input);
   --color-ring: var(--ring);
 
-  /* Color tokens — brand values with no semantic equivalent */
+  /* Color tokens — brand values under their own name. Amber, cyan and
+     security-red are also reachable semantically as primary, accent and
+     destructive; navy and amber-hover have no semantic alias. */
   --color-navy: var(--navy);
   --color-navy-deep: var(--navy-deep);
   --color-amber: var(--amber);

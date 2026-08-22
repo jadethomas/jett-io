@@ -1,6 +1,7 @@
 import Link from "next/link"
 import { Container } from "./container"
 import { Logo } from "./logo"
+import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 
 interface NavigationProps {
@@ -36,12 +37,9 @@ export function Navigation({ overlay = false }: NavigationProps) {
           <Link href="/about" className="font-semibold transition-colors hover:text-primary">
             About
           </Link>
-          <Link
-            href="/#subscribe"
-            className="rounded-full bg-primary px-5 py-2.5 font-bold text-primary-foreground transition-colors hover:bg-amber-hover"
-          >
-            Subscribe
-          </Link>
+          <Button asChild className="px-5 font-bold">
+            <Link href="/#subscribe">Subscribe</Link>
+          </Button>
         </div>
       </Container>
     </nav>
