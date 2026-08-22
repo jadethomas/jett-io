@@ -2,6 +2,8 @@ import type React from "react"
 import type { Metadata } from "next"
 import { Inter, Public_Sans, Space_Grotesk, JetBrains_Mono } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
+import { Navigation } from "@/components/navigation"
+import { Footer } from "@/components/footer"
 import "./globals.css"
 
 const inter = Inter({
@@ -44,7 +46,13 @@ export default function RootLayout({
       className={`dark ${inter.variable} ${publicSans.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable}`}
     >
       <body>
-        {children}
+        <div className="min-h-screen flex flex-col">
+          <Navigation />
+          <main className="flex-1 pt-24">
+            {children}
+          </main>
+          <Footer />
+        </div>
         <Analytics />
       </body>
     </html>

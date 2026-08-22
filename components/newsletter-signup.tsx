@@ -1,52 +1,61 @@
 "use client"
 
 import type React from "react"
-
-import { useState } from "react"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
+import { useState, useEffect, useRef } from "react"
 
 export function NewsletterSignup() {
   const [email, setEmail] = useState("")
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle")
+  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  useEffect(() => {
+    return () => {
+      if (timerRef.current) clearTimeout(timerRef.current)
+    }
+  }, [])
+
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
     setStatus("loading")
 
-    // Simulate API call
-    setTimeout(() => {
+    timerRef.current = setTimeout(() => {
       setStatus("success")
       setEmail("")
     }, 1000)
   }
 
   return (
-    <div className="bg-surface-container border border-outline-variant/15 p-8">
-      <h3 className="text-2xl font-bold mb-2">Get Signal, Not Noise</h3>
-      <p className="text-muted-foreground mb-6">
-        Practical engineering leadership insights delivered to your inbox. No fluff, just actionable advice.
+    <div className="bg-surface-container-low p-12 border-l-4 border-primary-container">
+      <h3 className="font-headline text-2xl font-bold mb-6">THE TRANSMISSION</h3>
+      <p className="text-on-surface-variant text-sm leading-relaxed mb-8">
+        Periodic insights on technical design and systemic engineering delivered directly to your node. No fluff. Just blueprints.
       </p>
 
-      <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3">
-        <Input
-          type="email"
-          placeholder="your@email.com"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-          className="flex-1 bg-background border-primary/30 focus:border-primary"
-        />
-        <Button
+      <form onSubmit={handleSubmit} className="space-y-4">
+        <div className="relative">
+          <input
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+            placeholder="EMAIL_ADDRESS"
+            className="w-full bg-surface-container-highest border-0 border-b border-outline-variant/30 px-4 py-4 focus:border-primary-container focus:outline-none focus:ring-0 font-label text-xs transition-all text-on-surface placeholder:text-muted-foreground"
+          />
+        </div>
+        <button
           type="submit"
           disabled={status === "loading"}
-          className="bg-primary text-primary-foreground hover:bg-primary/90 font-bold"
+          className="w-full bg-primary-container text-on-primary-container py-4 font-label font-bold text-xs tracking-widest uppercase hover:opacity-90 transition-opacity disabled:opacity-50"
         >
-          {status === "loading" ? "Subscribing..." : "Subscribe"}
-        </Button>
+          {status === "loading" ? "JOINING..." : "JOIN NETWORK"}
+        </button>
       </form>
 
-      {status === "success" && <p className="mt-4 text-primary text-sm">Thanks for subscribing!</p>}
+      {status === "success" && (
+        <p className="mt-4 text-primary-container text-sm font-label tracking-wide">
+          TRANSMISSION CONFIRMED. WELCOME TO THE NETWORK.
+        </p>
+      )}
     </div>
   )
 }
