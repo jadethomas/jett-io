@@ -9,7 +9,7 @@ export default function AboutPage() {
     <div className="min-h-screen flex flex-col">
       <Navigation />
 
-      <main className="flex-1 container mx-auto px-4 py-12">
+      <main className="flex-1 mx-auto w-full max-w-[1240px] px-6 md:px-14 py-12">
         <div className="max-w-4xl mx-auto">
           {/* Header */}
           <div className="mb-12">

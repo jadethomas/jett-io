@@ -61,7 +61,7 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
       <Navigation />
 
       <main className="flex-1">
-        <article className="container mx-auto px-4 py-12 max-w-4xl">
+        <article className="mx-auto w-full max-w-4xl px-6 md:px-14 py-12">
           {/* Back button */}
           <Link
             href="/blog"

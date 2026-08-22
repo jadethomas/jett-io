@@ -12,7 +12,7 @@ export default function BlogPage() {
     <div className="min-h-screen flex flex-col">
       <Navigation />
 
-      <main className="flex-1 container mx-auto px-4 py-12">
+      <main className="flex-1 mx-auto w-full max-w-[1240px] px-6 md:px-14 py-12">
         {/* Header */}
         <div className="mb-12">
           <h1 className="text-5xl font-bold mb-4">Blog</h1>
