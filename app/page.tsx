@@ -1,42 +1,11 @@
 import { Navigation } from "@/components/navigation"
 import { Footer } from "@/components/footer"
 import { Logo } from "@/components/logo"
-import { PostCard } from "@/components/post-card"
+import { LatestLogs } from "@/components/latest-logs"
 import { NewsletterSignup } from "@/components/newsletter-signup"
 import { Button } from "@/components/ui/button"
 import { ArrowRight } from "lucide-react"
 import Link from "next/link"
-
-// Sample featured posts data
-const featuredPosts = [
-  {
-    title: "Everyone's Wrong About AI Agents in Production",
-    excerpt:
-      "The hype cycle is real, but so are the practical applications. Here's what actually works in enterprise AI deployments.",
-    date: "Jan 15, 2025",
-    readTime: "8 min read",
-    category: "AI",
-    slug: "ai-agents-production",
-  },
-  {
-    title: "The DevOps Practices That Actually Ship",
-    excerpt:
-      "Forget the buzzwords. These are the battle-tested practices that reduce deployment friction and increase velocity.",
-    date: "Jan 10, 2025",
-    readTime: "6 min read",
-    category: "DevOps",
-    slug: "devops-practices-ship",
-  },
-  {
-    title: "Security Theater vs. Real Security",
-    excerpt:
-      "Stop checking boxes and start building systems that actually protect your users. A practical guide to security that matters.",
-    date: "Jan 5, 2025",
-    readTime: "10 min read",
-    category: "Security",
-    slug: "security-theater-real",
-  },
-]
 
 export default function HomePage() {
   return (
@@ -72,32 +41,8 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* Featured Posts */}
-        <section className="container mx-auto px-4 py-16">
-          <div className="mb-12">
-            <h2 className="text-4xl font-bold mb-4">Latest Posts</h2>
-            <p className="text-muted-foreground text-lg">
-              Opinionated takes on what actually works in modern engineering
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
-            {featuredPosts.map((post) => (
-              <PostCard key={post.slug} {...post} />
-            ))}
-          </div>
-
-          <div className="text-center">
-            <Button
-              asChild
-              variant="outline"
-              size="lg"
-              className="border-primary/30 hover:border-primary bg-transparent"
-            >
-              <Link href="/blog">View All Posts</Link>
-            </Button>
-          </div>
-        </section>
+        {/* Latest Logs — bento section */}
+        <LatestLogs />
 
         {/* About Section */}
         <section className="container mx-auto px-4 py-16">
